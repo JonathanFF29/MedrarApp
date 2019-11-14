@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Registrar mascota
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="margin-left: 5%; margin-right: 10%; ">
+    <br>
+    <br>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Cedula</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese la cedula..." maxlength="30"  [(ngModel)]="mascota.cedula"></ion-input>
+      </ion-item>
+      <br>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Nombre</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese el Nombre..." maxlength="30" [(ngModel)]="mascota.nombre"></ion-input>
+      </ion-item>
+      <br>
+      <br>
+      <ion-item>
+        <ion-label>
+          <h1>
+            <b>Tipo</b>
+          </h1>
+        </ion-label>
+        <ion-select name="opcion" [(ngModel)]="mascota.tipo">
+          <ion-select-option value="perro">Perro</ion-select-option>
+          <ion-select-option value="gato">Gato</ion-select-option>
+          <ion-select-option value="pajaro">Pajaro</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Edad</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese el Edad..." maxlength="30" [(ngModel)]="mascota.edad"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Raza</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese el Raza..." maxlength="30" [(ngModel)]="mascota.raza"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>
+          <h1>
+            <b>Propietarios</b>
+          </h1>
+        </ion-label>
+        <ion-select name="opcion" [(ngModel)]="mascota.propietario">
+            <ion-select-option *ngFor="let propietario of listaPropietarios">{{propietario.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+
+      <br>
+    </ion-list>
+  </div>
+  <div align="center">
+    <ion-button (click)="guardar()">Guardar</ion-button>
+  </div>
+
+</ion-content>

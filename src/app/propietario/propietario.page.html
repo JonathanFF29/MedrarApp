@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Registrar propietario
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="margin-left: 5%; margin-right: 10%; ">
+    <br>
+    <br>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Cedula</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese la cedula..." maxlength="30" type="text" [(ngModel)]="propietario.cedula"></ion-input>
+      </ion-item>
+      <br>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Nombre</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese el Nombre..." maxlength="30" [(ngModel)]="propietario.nombre"></ion-input>
+      </ion-item>
+      <br>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Teléfono</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese el telefono..." maxlength="30" type="number" [(ngModel)]="propietario.telefono"></ion-input>
+      </ion-item>
+      <br>
+
+      <br>
+    </ion-list>
+  </div>
+  <div align="center" >
+    <ion-button (click)="guardar()">Guardar</ion-button>
+  </div>
+
+</ion-content>

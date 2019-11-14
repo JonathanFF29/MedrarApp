@@ -14,7 +14,10 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
+  },
+  { path: 'propietario', loadChildren: './propietario/propietario.module#PropietarioPageModule' },
+  { path: 'vacuna', loadChildren: './vacuna/vacuna.module#VacunaPageModule' },
+  { path: 'mascota', loadChildren: './mascota/mascota.module#MascotaPageModule' }
 ];
 
 @NgModule({

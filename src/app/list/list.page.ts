@@ -6,34 +6,51 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
+  public listaMascota: Array<{ cedula: String, nombre: String, tipo: String, edad: String, raza: String, propietarios: String }> = [];
+  public listaFiltrada: Array<{}> = [];
+  public listaVacuna: Array<{ cedula: String, dosis: String, fecha: String, nombre: String}> = [];
+  public listaVacunaFiltrada: Array<{}> = [];
+  itemBuscar: string = '';
+  mascotaSeleccionada:any= null;
   constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+
   }
 
   ngOnInit() {
+    this.listaMascota = JSON.parse(localStorage.getItem("listaMascota"));
+    if (this.listaMascota === null) {
+      alert("Aviso: aun no tiene mascotas registradas")
+    }
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  buscar() {
+    this.listaFiltrada = this.filtrar(this.itemBuscar);
+  }
+
+  filtrar(event) {
+    return this.listaMascota.filter(item => {
+      return item.cedula.toLowerCase().indexOf(event.toLowerCase()) > -1;
+    });
+  }
+
+  seleccionar(mascota){
+    this.mascotaSeleccionada = mascota;
+    this.listaVacunaFiltrada = [];
+    this.listaVacuna = JSON.parse(localStorage.getItem("listaVacuna"));  
+    this.listaVacuna.forEach(element => {
+      if(element.cedula === mascota.cedula){
+        this.listaVacunaFiltrada.push(element);
+      }
+    });
+
+  }
+
+  eliminar(){
+    this.listaMascota.forEach( (item, index) => {
+      if(item.cedula ===  this.mascotaSeleccionada.cedula) this.listaMascota.splice(index,1);
+    });
+    this.mascotaSeleccionada = null;
+    this.listaVacunaFiltrada = [];
+    this.buscar();
+  }
 }

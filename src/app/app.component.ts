@@ -17,9 +17,22 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Consultar',
       url: '/list',
       icon: 'list'
+    },
+    {
+      title: 'Registrar Mascota',
+      url: '/mascota',
+      icon: 'create'
+    },{
+      title: 'Registrar Vacuna',
+      url: '/vacuna',
+      icon: 'add-circle'
+    },{
+      title: 'Registrar Propietario',
+      url: '/propietario',
+      icon: 'person'
     }
   ];
 

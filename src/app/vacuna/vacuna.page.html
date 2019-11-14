@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Registrar vacuna
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cabecera">
+    <ion-searchbar animated [(ngModel)]="itemBuscar" (ionChange)='buscar()'></ion-searchbar>
+  </div>
+  <div *ngIf="listaFiltrada.length > 0">
+    <ion-item-sliding *ngFor="let mascota of listaFiltrada">
+      <ion-item (click)='seleccionar(mascota)'>
+
+        <div class="item-note">
+          {{mascota.cedula}} -
+        </div>
+        <div style="padding-left:15px;">
+          {{mascota.nombre}} -
+        </div>
+        <div class="item-note" slot="end">
+          {{mascota.tipo}}
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  </div>
+
+
+  <div *ngIf="mascotaSeleccionada !== null">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Mascota seleccionada</b>
+          </h1>
+        </ion-label>
+        <h4 >
+            Cédula: {{mascotaSeleccionada.cedula}}, Nombre: {{mascotaSeleccionada.nombre}}, Tipo:{{mascotaSeleccionada.tipo}},
+            Propietario: {{mascotaSeleccionada.propietario}}
+          </h4>
+      </ion-item>
+     
+    </ion-list>
+    
+  </div>
+  <div style="margin-left: 5%; margin-right: 10%; ">
+    <br>
+    <br>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Nueva vacuna</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese el nombre de la vacuna..." maxlength="30" [(ngModel)]="vacuna.nombre"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Fecha</b>
+          </h1>
+        </ion-label>
+        <ion-datetime displayFormat="MM DD YY" placeholder="Seleccione fecha" [(ngModel)]="vacuna.fecha"></ion-datetime>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Dosis</b>
+          </h1>
+        </ion-label>
+        <ion-input placeholder="Ingrese la dósis..." maxlength="30" [(ngModel)]="vacuna.dosis"></ion-input>
+      </ion-item>
+
+
+
+      <br>
+    </ion-list>
+  </div>
+  <div align="center">
+    <ion-button (click)="guardar()">Guardar</ion-button>
+  </div>
+
+</ion-content>

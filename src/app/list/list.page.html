@@ -4,24 +4,73 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      Consultar -Eliminar
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
+  <div class="cabecera">
+    <ion-searchbar animated [(ngModel)]="itemBuscar" (ionChange)='buscar()'></ion-searchbar>
+  </div>
+  <div *ngIf="listaFiltrada.length > 0">
+    <ion-item-sliding *ngFor="let mascota of listaFiltrada">
+      <ion-item (click)='seleccionar(mascota)'>
+
+        <div class="item-note">
+          {{mascota.cedula}} -
+        </div>
+        <div style="padding-left:15px;">
+          {{mascota.nombre}} -
+        </div>
+        <div class="item-note" slot="end">
+          {{mascota.tipo}}
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  </div>
+  <div *ngIf="mascotaSeleccionada !== null">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">
+          <h1>
+            <b>Mascota seleccionada</b>
+          </h1>
+        </ion-label>
+        <h4>
+          Cédula: {{mascotaSeleccionada.cedula}}, Nombre: {{mascotaSeleccionada.nombre}}, Tipo:{{mascotaSeleccionada.tipo}}, Propietario:
+          {{mascotaSeleccionada.propietario}}
+        </h4>
+      </ion-item>
+
+    </ion-list>
+
+  </div>
+  <div *ngIf="listaVacunaFiltrada.length > 0">
+    <ion-item>
+      <ion-label position="stacked">
+        <h1>
+          <b>Vacunas</b>
+        </h1>
+      </ion-label>
     </ion-item>
-  </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+    <ion-item-sliding *ngFor="let vacuna of listaVacunaFiltrada">
+      <ion-item>
+
+        <div class="item-note">
+          {{vacuna.nombre}} -
+        </div>
+        <div style="padding-left:25px;">
+          {{vacuna.dosis}} -
+        </div>
+        <div class="item-note" slot="end">
+          <ion-datetime displayFormat="DDD. MMM DD, YY" readonly="true" value="{{vacuna.fecha}}"></ion-datetime>
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  </div>
+  <div *ngIf="mascotaSeleccionada !== null" align="center">
+    <ion-button (click)="eliminar()">Eliminar</ion-button>
+  </div>
+
 </ion-content>
